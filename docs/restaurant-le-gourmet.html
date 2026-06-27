@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Restaurant Le Gourmet - Saveurs parisiennes exceptionnelles">
+  <meta name="keywords" content="Restaurant Le Gourmet, Paris, gastronomie, luxe, cuisine française">
+  <title>Restaurant Le Gourmet</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <style>
+    :root {
+      --acc: #8B0000;
+      --bg: #FAFAF5;
+      --txt: #1C1917;
+      --gold: #C9A84C;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--txt);
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      transition: background-color 0.5s ease;
+      z-index: 1000;
+    }
+    .navbar.scrolled {
+      background-color: #fff;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .navbar li {
+      margin-right: 20px;
+    }
+    .navbar a {
+      color: var(--txt);
+      text-decoration: none;
+      transition: color 0.5s ease;
+    }
+    .navbar a:hover {
+      color: var(--acc);
+    }
+    .hero {
+      height: 100vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/2000/1000');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .hero p {
+      font-size: 24px;
+    }
+    .notre-carte {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .notre-carte .card {
+      margin: 20px;
+      width: calc(33.33% - 20px);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    .notre-carte .card:hover {
+      transform: scale(1.05);
+    }
+    .galerie {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .galerie .img {
+      margin: 20px;
+      width: calc(25% - 20px);
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+    }
+    .temoignages {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .temoignages .card {
+      margin: 20px;
+      width: calc(33.33% - 20px);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    .temoignages .card:hover {
+      transform: scale(1.05);
+    }
+    .reservation {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .reservation .card {
+      margin: 20px;
+      width: calc(33.33% - 20px);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    .reservation .card:hover {
+      transform: scale(1.05);
+    }
+    .faq {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .faq .card {
+      margin: 20px;
+      width: calc(33.33% - 20px);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    .faq .card:hover {
+      transform: scale(1.05);
+    }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .contact .card {
+      margin: 20px;
+      width: calc(33.33% - 20px);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+    .contact .card:hover {
+      transform: scale(1.05);
+    }
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+      .navbar ul {
+        flex-direction: column;
+      }
+      .navbar li {
+        margin-bottom: 10px;
+      }
+      .hero {
+        height: 100vh;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/2000/1000');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero p {
+        font-size: 18px;
+      }
+      .notre-carte {
+        flex-direction: column;
+        align-items: center;
+      }
+      .notre-carte .card {
+        margin: 10px;
+        width: 90%;
+      }
+      .galerie {
+        flex-direction: column;
+        align-items: center;
+      }
+      .galerie .img {
+        margin: 10px;
+        width: 90%;
+        height: 150px;
+      }
+      .temoignages {
+        flex-direction: column;
+        align-items: center;
+      }
+      .temoignages .card {
+        margin: 10px;
+        width: 90%;
+      }
+      .reservation {
+        flex-direction: column;
+        align-items: center;
+      }
+      .reservation .card {
+        margin: 10px;
+        width: 90%;
+      }
+      .faq {
+        flex-direction: column;
+        align-items: center;
+      }
+      .faq .card {
+        margin: 10px;
+        width: 90%;
+      }
+      .contact {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact .card {
+        margin: 10px;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #fff; z-index: 1000; display: flex; justify-content: center; align-items: center; font-size: 24px; font-weight: bold;">
+    Chargement...
+  </div>
+  <script>
+    setTimeout(() => {
+      document.querySelector('.loading-screen').style.display = 'none';
+    }, 1500);
+  </script>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#notre-carte">Notre Carte</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#temoignages">Témoignages</a></li>
+      <li><a href="#reservation">Réservation</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section id="hero" class="hero">
+    <h1>Restaurant Le Gourmet</h1>
+    <p>Saveurs parisiennes exceptionnelles</p>
+  </section>
+  <section id="notre-carte" class="notre-carte">
+    <div class="card">
+      <h2>Dîner gastronomique</h2>
+      <p>Un menu dégustation de 7 plats, accompagné de vins sélectionnés</p>
+      <p>180-250€</p>
+    </div>
+    <div class="card">
+      <h2>Brunch du dimanche</h2>
+      <p>Un brunch élégant et copieux, avec champagne et viennoiseries</p>
+      <p>80-120€</p>
+    </div>
+    <div class="card">
+      <h2>Cours de cuisine</h2>
+      <p>Un atelier de cuisine avec notre chef, pour apprendre les techniques de la cuisine française</p>
+      <p>120-180€</p>
+    </div>
+    <div class="card">
+      <h2>Événements privés</h2>
+      <p>Nous organisons vos événements privés, tels que les mariages et les anniversaires</p>
+      <p>500-1000€</p>
+    </div>
+    <div class="card">
+      <h2>Carte des vins</h2>
+      <p>Une sélection de vins fins et rares, pour accompagner vos repas</p>
+      <p>50-200€</p>
+    </div>
+    <div class="card">
+      <h2>Service traiteur</h2>
+      <p>Nous proposons un service de traiteur pour vos événements à domicile ou en entreprise</p>
+      <p>100-300€</p>
+    </div>
+  </section>
+  <section id="galerie" class="galerie">
+    <div class="img" style="background-image: url('https://picsum.photos/200/300');"></div>
+    <div class="img" style="background-image: url('https://picsum.photos/200/301');"></div>
+    <div class="img" style="background-image: url('https://picsum.photos/200/302');"></div>
+    <div class="img" style="background-image: url('https://picsum.photos/200/303');"></div>
+  </section>
+  <section id="temoignages" class="temoignages">
+    <div class="card">
+      <h2>Léa Durand</h2>
+      <p>J'ai passé une soirée inoubliable au Restaurant Le Gourmet, avec un service impeccable et une cuisine divine.</p>
+      <p>5/5</p>
+    </div>
+    <div class="card">
+      <h2>Pierre Laurent</h2>
+      <p>Le Restaurant Le Gourmet est mon endroit préféré pour les occasions spéciales, la qualité est toujours au rendez-vous.</p>
+      <p>5/5</p>
+    </div>
+    <div class="card">
+      <h2>Anaïs Martin</h2>
+      <p>Le brunch du dimanche est un must, les plats sont délicieux et le cadre est élégant et convivial.</p>
+      <p>5/5</p>
+    </div>
+  </section>
+  <section id="reservation" class="reservation">
+    <div class="card">
+      <h2>Réservation</h2>
+      <p>Réservez votre table dès maintenant</p>
+      <p><a href="https://api.web3forms.com/submit" target="_blank">Réserver</a></p>
+    </div>
+  </section>
+  <section id="faq" class="faq">
+    <div class="card">
+      <h2>Quels sont les horaires d'ouverture du restaurant ?</h2>
+      <p>Nous sommes ouverts du lundi au samedi, de 12h à 14h30 et de 19h à 22h30.</p>
+    </div>
+    <div class="card">
+      <h2>Pouvez-vous accueillir des événements privés ?</h2>
+      <p>Oui, nous organisons des événements privés, tels que les mariages et les anniversaires, sur demande.</p>
+    </div>
+    <div class="card">
+      <h2>Avez-vous des options végétariennes et véganes ?</h2>
+      <p>Oui, nous proposons des options végétariennes et véganes, veuillez nous en informer à l'avance pour que nous puissions vous proposer des alternatives.</p>
+    </div>
+    <div class="card">
+      <h2>Pouvez-vous réserver une table en ligne ?</h2>
+      <p>Oui, vous pouvez réserver une table en ligne sur notre site web ou en nous contactant directement.</p>
+    </div>
+    <div class="card">
+      <h2>Quels sont les modes de paiement acceptés ?</h2>
+      <p>Nous acceptons les cartes de crédit, les chèques et les espèces.</p>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="card">
+      <h2>Formulaire de contact</h2>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_KEY_HERE">
+        <input type="text" name="name" placeholder="Nom">
+        <input type="email" name="email" placeholder="Email">
+        <textarea name="message" placeholder="Message"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+  <div class="whatsapp">
+    <a href="https://wa.me/1234567890" target="_blank">
+      <img src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/svgs/brands/whatsapp.svg" alt="WhatsApp">
+    </a>
+  </div>
+  <script>
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero');
+    const notreCarte = document.querySelector('.notre-carte');
+    const galerie = document.querySelector('.galerie');
+    const temoignages = document.querySelector('.temoignages');
+    const reservation = document.querySelector('.reservation');
+    const faq = document.querySelector('.faq');
+    const contact = document.querySelector('.contact');
+    const whatsapp = document.querySelector('.whatsapp');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > hero.offsetHeight) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
